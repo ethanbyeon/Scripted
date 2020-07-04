@@ -2,8 +2,10 @@
 import random
 import string
 
-def generate_nomen(length=32, uppercase=True, lowercase=True, numbers=True):
+def generate_temere(length=32, uppercase=True, lowercase=True, numbers=True):
+    
     character_set = ''
+    
     if uppercase:
         character_set += string.ascii_uppercase
     if lowercase:
@@ -13,11 +15,14 @@ def generate_nomen(length=32, uppercase=True, lowercase=True, numbers=True):
     
     return ''.join(random.choice(character_set) for i in range(length))
 
-print("Press enter to generate or press any other key to exit...")
+
+user_letter = input("Please select a letter: ")
+
+print("Press enter to generate...")
 
 while True:
     if input() == '':
-        nomen = generate_nomen(length=5, uppercase=True, lowercase=False, numbers=False)
-        print(nomen)
+        result = generate_temere(4, True, False, False)
+        print(user_letter + result)
     else:
         break
