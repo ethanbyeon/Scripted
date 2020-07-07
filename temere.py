@@ -1,6 +1,7 @@
 
 import random
 import string
+import itertools
 
 def generate_temere(length=32, uppercase=True, lowercase=True, numbers=True):
     
@@ -25,6 +26,13 @@ def scramble(word):
         word = word[:position] + word[(position + 1):]
     
     return jumble
+
+
+def permutations(string):
+    
+    for i in range(0, len(list) + 1):
+        for subset in itertools.combinations(list, i):
+            print(subset)
 
 
 # user_letter = input("Please select a letter: ")
