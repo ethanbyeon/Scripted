@@ -1,7 +1,8 @@
 
 import random
 import string
-import itertools
+
+from itertools import permutations
 
 def generate_temere(length=32, uppercase=True, lowercase=True, numbers=True):
     
@@ -29,13 +30,16 @@ def scramble(word):
     return jumble
 
 
-def permutations(string):
+def permutate(string):
 
-    letters = list(string)
+    # letters = list(string)
     
-    for i in range(0, len(letters) + 1):
-        for subset in itertools.combinations(letters, i):
-            print(subset)
+    # for i in range(0, len(letters) + 1):
+    #     for subset in itertools.combinations(letters, i):
+    #         print(subset)
+
+    word, n = string.split()
+    print(*[''.join(i) for i in permutations(sorted(word), int(n))], sep='\n')
 
 
 select_msg = f"""
@@ -49,6 +53,8 @@ Please select one of the following functions:
 {'-'*40}
 """
 
+option_msg = "YES ('True') | NO ('False'): "
+
 while True:
 
     user_select = input(select_msg)
@@ -60,9 +66,9 @@ while True:
     if user_select == 't':
 
         string_length = int(input("Please enter a length for string: "))
-        caps = input("Inclue uppercase? YES ('True') | NO ('False'): ")
-        lows = input("Include lowercase? YES ('True') | NO ('False'): ")
-        numbers = input("Include numbers? YES ('True') | NO ('False'): ")
+        caps = input("Inclue uppercase? " + option_msg)
+        lows = input("Include lowercase? " + option_msg)
+        numbers = input("Include numbers? "+ option_msg)
         print("Press enter to generate and q to stop...")
 
         while True:
@@ -85,12 +91,12 @@ while True:
                 break
 
     if user_select == 'p':
-        user_input = input("Please enter a string: ")
-        permutations(user_input)
+        user_input = input("Please enter a string and length (Ex. ANDY 2): ")
+        permutate(user_input)
 
     print('-'*40)
     ask_continue = input("Would you like to continue? (Yes or No): ").upper()
-    if ask_continue == "YES":
+    if ask_continue == "Y" or ask_continue == "YES":
         continue
-    if ask_continue == "NO":
+    else:
         break
